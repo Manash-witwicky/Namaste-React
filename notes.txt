@@ -24,7 +24,7 @@
 
 /**
  * npx parcel index.html
- * npx ---> it will execute the package (here PARCEL)
+ * npx ---> it will execute the package (here PARCEL) execute using NPM
  * npm parcel index.html --- dev build
  * npm parcel build index.html --- prod build
  */

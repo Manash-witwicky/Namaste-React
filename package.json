@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Into the React World",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev": "npx parcel index.html"
   },
   "repository": {
     "type": "git",

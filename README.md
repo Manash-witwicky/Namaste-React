@@ -17,3 +17,12 @@
 - Differential Bundling - support older browsers
 - Host apps on HTTPS
 - Tree Shaking - remove unused code
+
+* There are 2 types of import/export
+
+--- export dafault comp_name || export const name
+--- we can use default only one time in a file
+--- if we have multiple things need to export, then use named export
+
+--- named import uses {}
+--- named default does not use

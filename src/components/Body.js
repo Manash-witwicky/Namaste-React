@@ -1,10 +1,12 @@
 import { RestaurantCard } from "./RestaurantCard";
 import resList from "../../utils/mockData";
-import { useState } from "react";
+import { use, useState } from "react";
 
 const Body = () => {
+  // const arr = useState(resList);
+  // const [listOfRestaurants, setListOfRestaurants] = arr;
+  // console.log(arr); array destructuring
   const [listOfRestaurants, setListOfRestaurants] = useState(resList);
-
   const filteredRestaurants = () => {
     const filteredRestaurants = listOfRestaurants.filter(
       (res) => res?.card?.card?.info?.avgRating > 4.1

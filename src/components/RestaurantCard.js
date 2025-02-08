@@ -6,7 +6,7 @@ export const RestaurantCard = (props) => {
   // console.log(resData);
   const { resData } = props;
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } =
-    resData?.card?.card?.info;
+    resData?.info;
 
   return (
     <div className="res-card">
@@ -14,7 +14,7 @@ export const RestaurantCard = (props) => {
       <h3>{name}</h3>
       <h4>{cuisines.join(", ")}</h4>
       <h4>Rating: {avgRating}</h4>
-      <h4>{resData?.card.card.info?.sla?.deliveryTime} minutes</h4>
+      <h4>{resData?.info?.sla?.deliveryTime} minutes</h4>
       <h4>{costForTwo}</h4>
     </div>
   );

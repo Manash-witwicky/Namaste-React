@@ -123,3 +123,18 @@ body {
 .top-res {
   height: 22px;
 }
+
+.res-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+
+  .bold {
+    font-weight: 800;
+  }
+}
+
+.cuisines {
+  opacity: 0.7;
+}

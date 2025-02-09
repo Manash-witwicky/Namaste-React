@@ -12,10 +12,13 @@ export const RestaurantCard = (props) => {
     <div className="res-card">
       <img className="res-img" src={IMG_URL + cloudinaryImageId} />
       <h3>{name}</h3>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>Rating: {avgRating}</h4>
-      <h4>{resData?.info?.sla?.deliveryTime} minutes</h4>
-      <h4>{costForTwo}</h4>
+      <div className="res-info">
+        <span>Rating: {avgRating}</span>
+        <span className="bold">{resData?.info?.sla?.deliveryTime} minutes</span>
+      </div>
+
+      <span className="cuisines">{cuisines.join(", ")}</span>
+      {/* <span>{costForTwo}</span> */}
     </div>
   );
 };

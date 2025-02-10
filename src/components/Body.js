@@ -1,6 +1,6 @@
 import { RestaurantCard } from "./RestaurantCard";
 import { useState, useEffect } from "react";
-import { API_URL } from "../../utils/constants";
+import { API_URL, CORS_API_KEY } from "../../utils/constants";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
@@ -15,10 +15,13 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
   const fetchData = async () => {
     try {
-      const response = await fetch(API_URL);
+      const response = await fetch(`https://proxy.cors.sh/${API_URL}`, {
+        headers: {
+          "x-cors-api-key": CORS_API_KEY,
+        },
+      });
       if (!response.ok) {
         throw new Error("Something went wrong!!");
       }

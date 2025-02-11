@@ -47,7 +47,7 @@ const Body = () => {
     const topRatedRestaurants = listOfRestaurants.filter(
       (res) => res?.info?.avgRating > 4.3
     );
-    setListOfRestaurants(topRatedRestaurants);
+    setFilteredRestaurants(topRatedRestaurants);
   };
 
   const filterRestaurants = () => {

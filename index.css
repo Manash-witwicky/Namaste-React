@@ -137,3 +137,15 @@ body {
 .cuisines {
   opacity: 0.7;
 }
+
+.notfound-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  .message {
+    font-size: 24px;
+    font-weight: 500;
+  }
+}

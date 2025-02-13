@@ -9,7 +9,7 @@ export const RestaurantCard = (props) => {
     resData?.info;
 
   return (
-    <div className="res-card">
+    <div className="res-card uniform-height">
       <img className="res-img" src={IMG_URL + cloudinaryImageId} />
       <h3>{name}</h3>
       <div className="res-info">

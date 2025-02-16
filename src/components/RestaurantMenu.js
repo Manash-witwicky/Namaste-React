@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { RESTAURANT_MENU_API, CORS_API_KEY } from "../../utils/constants";
+import {
+  RESTAURANT_MENU_API,
+  CORS_API_KEY,
+  IMG_URL,
+} from "../../utils/constants";
 import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () => {
@@ -22,7 +26,6 @@ const RestaurantMenu = () => {
         }
       );
       const data = await response.json();
-      console.log(data);
       setMenuInfo(data);
     } catch (error) {
       if (error instanceof TypeError) {
@@ -39,22 +42,35 @@ const RestaurantMenu = () => {
     cuisines,
     totalRatingsString,
     sla,
+    cloudinaryImageId,
   } = menuInfo?.data?.cards[2]?.card?.card?.info;
   return (
-    <div>
-      <h1>{name}</h1>
-      <div className="res-info">
-        <span>
-          {avgRating} ({totalRatingsString})
-        </span>
-        <span className="bold">{costForTwoMessage}</span>
+    <div className="res-details-card">
+      <div>
+        <h1>{name}</h1>
+        <div className="res-info">
+          <span className="bold">
+            ⭐️ {avgRating} ({totalRatingsString})
+          </span>
+          <span className="bold">{costForTwoMessage}</span>
+        </div>
+        <div className="res-info-cuisines">
+          <span className="cuisines">{cuisines.join(", ")}</span>
+          <span className="bold">{sla?.slaString}</span>
+        </div>
       </div>
-      <div className="res-info">
-        <span className="cuisines">{cuisines.join(", ")}</span>
-        <span>{sla?.slaString}</span>
-      </div>
+
+      <img className="res-img-menu" src={IMG_URL + cloudinaryImageId} />
     </div>
   );
 };
 
 export default RestaurantMenu;
+
+/**
+ * Query to filter title and items
+ * data.groupedCard.cardGroupMap.REGULAR.cards.filter((card) => card.card.card.title && card.card.card.itemCards).map((obj) => ({
+    title: obj.card.card.title,
+    itemCards: obj.card.card.itemCards
+}))
+ */

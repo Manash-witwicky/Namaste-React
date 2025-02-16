@@ -72,7 +72,7 @@ a {
 .res-img {
   width: 100%;
   height: 200px;
-  border-radius: 16px;
+  border-radius: 10px;
   object-fit: cover;
 }
 
@@ -139,6 +139,17 @@ a {
   }
 }
 
+.res-info-cuisines {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 10px;
+
+  .bold {
+    font-weight: 800;
+  }
+}
+
 .uniform-height {
   height: 300px; /* Adjust the height as needed */
   display: flex;
@@ -147,8 +158,7 @@ a {
 }
 
 .cuisines {
-  opacity: 0.7;
-  font-weight: 600;
+  font-weight: 800;
   color: #ff9800;
   display: -webkit-box;
   line-clamp: 2;
@@ -169,4 +179,31 @@ a {
     font-size: 24px;
     font-weight: 500;
   }
+}
+
+.user-card {
+  border: 1px solid white;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.res-details-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 40%;
+  margin: auto;
+  margin-top: 30px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgb(56 56 56 / 30%), 0 6px 20px rgb(48 47 47 / 20%);
+  border-radius: 8px;
+  background-color: #161618;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.res-img-menu {
+  border-radius: 10px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
 }

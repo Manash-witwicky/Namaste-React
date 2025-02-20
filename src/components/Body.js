@@ -1,48 +1,19 @@
 import { RestaurantCard } from "./RestaurantCard";
-import { useState, useEffect } from "react";
-import { API_URL, CORS_API_KEY } from "../../utils/constants";
+import { useState } from "react";
 import { Link } from "react-router";
 import Shimmer from "./Shimmer";
+import useFetchRestaurant from "../../utils/useFetchRestaurant";
 
 const Body = () => {
-  // const arr = useState(resList);
-  // const [listOfRestaurants, setListOfRestaurants] = arr;
-  // console.log(arr); array destructuring
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const [noResult, setNoResult] = useState(false);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`https://proxy.cors.sh/${API_URL}`, {
-        headers: {
-          "x-cors-api-key": CORS_API_KEY,
-        },
-      });
-      if (!response.ok) {
-        throw new Error("Something went wrong!!");
-      }
-      const data = await response.json();
-      const cards = data?.data?.cards;
-      const restaurants = cards.filter((obj) =>
-        obj.card.card["@type"].includes("GridWidget")
-      );
-      setListOfRestaurants(
-        restaurants[1].card.card.gridElements.infoWithStyle.restaurants
-      );
-      setFilteredRestaurants(
-        restaurants[1].card.card.gridElements.infoWithStyle.restaurants
-      );
-    } catch (error) {
-      if (error instanceof TypeError) {
-        console.log(`Network Error: ${error?.message}`);
-      }
-    }
-  };
+  const {
+    listOfRestaurants,
+    filteredRestaurants,
+    setFilteredRestaurants,
+    noResult,
+    setNoResult,
+  } = useFetchRestaurant();
 
   const topRatedRestaurants = () => {
     const topRatedRestaurants = listOfRestaurants.filter(
@@ -105,5 +76,3 @@ const Body = () => {
 };
 
 export default Body;
-
-// not using key < index < unique id

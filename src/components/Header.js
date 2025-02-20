@@ -1,9 +1,11 @@
 import Logo from "../../assets/orange.png";
 import { useState } from "react";
 import { Link } from "react-router";
+import useOnlineStatus from "../../utils/useOnlineStatus";
 
 const Header = () => {
   const [btnName, setbtnName] = useState("Login");
+  const status = useOnlineStatus();
 
   changeBtnName = () => {
     setbtnName((prevState) => (prevState === "Login" ? "Logout" : "Login"));
@@ -16,6 +18,7 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
+          <li>Status : {status ? "✅" : "🔴"}</li>
           <li>
             <Link to="/">Home</Link>
           </li>

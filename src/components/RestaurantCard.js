@@ -5,8 +5,7 @@ export const RestaurantCard = (props) => {
   // const { name, cuisines } = props;
   // console.log(resData);
   const { resData } = props;
-  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } =
-    resData?.info;
+  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } = resData;
 
   return (
     <div className="res-card uniform-height">

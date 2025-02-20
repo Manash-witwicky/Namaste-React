@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import Shimmer from "./Shimmer";
 import useFetchRestaurant from "../../utils/useFetchRestaurant";
+import useOnlineStatus from "../../utils/useOnlineStatus";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
@@ -17,7 +18,7 @@ const Body = () => {
 
   const topRatedRestaurants = () => {
     const topRatedRestaurants = listOfRestaurants.filter(
-      (res) => res?.info?.avgRating > 4.3
+      ({ info }) => info?.avgRating > 4.3
     );
     setFilteredRestaurants(topRatedRestaurants);
   };
@@ -28,14 +29,18 @@ const Body = () => {
     // because every string contains an empty substring.
     // so, filter method returns all the restaurants
     const data = searchText
-      ? listOfRestaurants.filter((res) =>
-          res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
+      ? listOfRestaurants.filter(({ info }) =>
+          info?.name.toLowerCase().includes(searchText.toLowerCase())
         )
       : listOfRestaurants;
     if (!searchText) setNoResult(false);
     if (!data.length) setNoResult(true);
     setFilteredRestaurants(data);
   };
+
+  const status = useOnlineStatus();
+
+  if (status === false) return <h1>Looks like you are offline.</h1>;
 
   return !listOfRestaurants.length ? (
     <Shimmer />
@@ -61,12 +66,9 @@ const Body = () => {
         {noResult ? (
           <p>No Result Found</p>
         ) : (
-          filteredRestaurants.map((restaurant) => (
-            <Link
-              to={`/restaurant/${restaurant?.info?.id}`}
-              key={restaurant?.info?.id}
-            >
-              <RestaurantCard resData={restaurant} />
+          filteredRestaurants.map(({ info }) => (
+            <Link to={`/restaurant/${info?.id}`} key={info?.id}>
+              <RestaurantCard resData={info} />
             </Link>
           ))
         )}

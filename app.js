@@ -1,26 +1,62 @@
+import React, { lazy, Suspense } from "react";
+import ReactDOM from "react-dom/client";
+import Header from "./src/components/Header";
+import Body from "./src/components/Body";
+import Contact from "./src/components/Contact";
+import NotFound from "./src/components/NotFound";
+import RestaurantMenu from "./src/components/RestaurantMenu";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
+
+const AppLayout = () => {
+  return (
+    <div className="app">
+      <Header />
+      <Outlet />
+    </div>
+  );
+};
+
 /**
- *  <div id="parent">
- *      <div id="child">
- *          <h1>I am an h1 tag</h1>
- *          <h2>I am an h2 tag</h2>
- *      </div>
- * </div>
+ * Lazy loading
+ * Code Splitting
+ * Dynamic loading
+ * import() below is a function
  */
 
-// Above HTML code in plain React
+const About = lazy(() => import("./src/components/About"));
 
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-const parent = React.createElement(
-  "div",
-  { id: "parent" },
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", { id: "first" }, "I am an h1 tag"),
-    React.createElement("h2", { id: "second" }, "I am an h2 tag"),
-  ])
-);
-console.log(parent);
+// create the routing configuration
+// provide the configuration by routerProvider to the App
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: (
+          <Suspense>
+            <About />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/restaurant/:resId",
+        element: <RestaurantMenu />,
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
+root.render(<RouterProvider router={appRouter} />);
+// root.render(<AppLayout />);

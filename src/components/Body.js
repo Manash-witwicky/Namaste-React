@@ -45,10 +45,11 @@ const Body = () => {
   return !listOfRestaurants.length ? (
     <Shimmer />
   ) : (
-    <div className="body-container">
-      <div className="filter">
-        <div className="search">
+    <div className="mx-10">
+      <div className="flex items-center gap-2">
+        <div className="p-2 m-2">
           <input
+            className="border border-solid border-gray-500 shadow-sm rounded-md px-3 py-1.5"
             type="text"
             placeholder="Search for Restaurants"
             value={searchText}
@@ -56,13 +57,27 @@ const Body = () => {
               setSearchText(e.target.value);
             }}
           />
-          <button onClick={filterRestaurants}>Search</button>
+          <button
+            type="button"
+            onClick={filterRestaurants}
+            class="text-black bg-[#FD7A3F] m-2 rounded-md text-sm px-3 py-1.5 border border-gray-200"
+          >
+            Search
+          </button>
         </div>
-        <button className="top-res" onClick={topRatedRestaurants}>
-          Top Rated Restaurants
-        </button>
+
+        <div className="p-2">
+          <button
+            type="button"
+            onClick={topRatedRestaurants}
+            class="text-black bg-white rounded-md text-sm px-3 py-1.5 border border-gray-800
+            hover:bg-[#FD7A3F] hover:border-none"
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap gap-4">
         {noResult ? (
           <p>No Result Found</p>
         ) : (

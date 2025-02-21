@@ -1,8 +1,7 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
-import About from "./src/components/About";
 import Contact from "./src/components/Contact";
 import NotFound from "./src/components/NotFound";
 import RestaurantMenu from "./src/components/RestaurantMenu";
@@ -16,6 +15,15 @@ const AppLayout = () => {
     </div>
   );
 };
+
+/**
+ * Lazy loading
+ * Code Splitting
+ * Dynamic loading
+ * import() below is a function
+ */
+
+const About = lazy(() => import("./src/components/About"));
 
 // create the routing configuration
 // provide the configuration by routerProvider to the App
@@ -31,7 +39,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",

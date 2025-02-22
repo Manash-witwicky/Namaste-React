@@ -1,6 +1,6 @@
 import { IMG_URL } from "../../utils/constants";
 
-export const RestaurantCard = (props) => {
+const RestaurantCard = (props) => {
   const { resData } = props;
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } = resData;
 
@@ -15,7 +15,7 @@ export const RestaurantCard = (props) => {
       />
       <h3 className="font-semibold">{name}</h3>
       <div className="flex items-center gap-2.5 mb-2.5 font-light">
-        <span>Rating: {avgRating}</span>
+        <span>⭐️ {avgRating}</span>
         <span className="bold">{resData?.info?.sla?.deliveryTime} minutes</span>
       </div>
 
@@ -26,3 +26,28 @@ export const RestaurantCard = (props) => {
     </div>
   );
 };
+
+/**
+ * HOC - it accepts a component as argument
+ * return an enhanced version of the component
+ * how to return a component ? use as function - return () {}
+ * inside this function - we also need to return some JSX
+ * here, if restaurant is open will add a new label as OPEN
+ * also need to export it
+ */
+
+export const isRestaurantOpen = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
+          OPEN
+        </label>
+        {/* ...props will extracts all the props that we are passing */}
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+
+export default RestaurantCard;

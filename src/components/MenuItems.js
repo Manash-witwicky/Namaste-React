@@ -1,8 +1,6 @@
 import { IMG_URL } from "../../utils/constants";
 
 const MenuItems = ({ items }) => {
-  console.log(items);
-
   return (
     <div>
       {items.map((item) => (

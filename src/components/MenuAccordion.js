@@ -8,7 +8,7 @@ const MenuAccordion = ({ data, showItems, setShowIndex }) => {
     <div>
       <div
         className="w-6/12 text-white my-4 mx-auto p-4  shadow-lg bg-[#161618] rounded-md
-    text-normal font-normal cursor-pointer"
+        text-normal font-normal cursor-pointer"
         onClick={toggleAccordion}
       >
         <div className="flex items-center justify-between">

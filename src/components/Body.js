@@ -1,9 +1,10 @@
 import RestaurantCard, { isRestaurantOpen } from "./RestaurantCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
 import Shimmer from "./Shimmer";
 import useFetchRestaurant from "../../utils/useFetchRestaurant";
 import useOnlineStatus from "../../utils/useOnlineStatus";
+import userContext from "../../utils/userContext";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
@@ -42,6 +43,8 @@ const Body = () => {
 
   const RestaurantOpen = isRestaurantOpen(RestaurantCard);
 
+  const { loggedinUser, setName } = useContext(userContext);
+
   if (status === false) return <h1>Looks like you are offline.</h1>;
 
   return !listOfRestaurants.length ? (
@@ -77,6 +80,16 @@ const Body = () => {
           >
             Top Rated Restaurants
           </button>
+        </div>
+
+        <div className="p-2">
+          <input
+            className="border border-solid border-gray-500 shadow-sm rounded-md px-3 py-1.5 text-black"
+            type="text"
+            placeholder="Update user Context"
+            value={loggedinUser}
+            onChange={(e) => setName(e.target.value)}
+          />
         </div>
       </div>
       <div className="flex flex-wrap gap-4">

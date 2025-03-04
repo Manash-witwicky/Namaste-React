@@ -2,7 +2,7 @@ import { IMG_URL } from "../../utils/constants";
 
 const RestaurantCard = (props) => {
   const { resData } = props;
-  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } = resData;
+  const { cloudinaryImageId, name, cuisines, avgRating } = resData;
 
   return (
     <div
@@ -22,7 +22,6 @@ const RestaurantCard = (props) => {
       <span className="font-normal text-sm text-[#ff9800] text-ellipsis overflow-hidden whitespace-normal">
         {cuisines.join(", ")}
       </span>
-      {/* <span>{costForTwo}</span> */}
     </div>
   );
 };

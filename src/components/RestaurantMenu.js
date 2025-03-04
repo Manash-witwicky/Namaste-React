@@ -19,6 +19,7 @@ const RestaurantMenu = () => {
     }));
 
   if (!menuInfo) return <Shimmer />;
+
   const {
     name,
     avgRating,
@@ -61,7 +62,7 @@ const RestaurantMenu = () => {
             <MenuAccordion
               data={category}
               key={index}
-              showItems={index === showIndex}
+              showItems={index === showIndex ? true : false}
               setShowIndex={() =>
                 setShowIndex(index === showIndex ? null : index)
               }

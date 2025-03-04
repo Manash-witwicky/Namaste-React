@@ -1,11 +1,13 @@
 import Logo from "../../assets/orange.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
 import useOnlineStatus from "../../utils/useOnlineStatus";
+import userContext from "../../utils/userContext";
 
 const Header = () => {
   const [btnName, setbtnName] = useState("Login");
   const status = useOnlineStatus();
+  const { loggedinUser } = useContext(userContext);
 
   changeBtnName = () => {
     setbtnName((prevState) => (prevState === "Login" ? "Logout" : "Login"));
@@ -32,6 +34,7 @@ const Header = () => {
           <button className="login-btn" onClick={changeBtnName}>
             {btnName}
           </button>
+          <li>{loggedinUser}</li>
         </ul>
       </div>
     </div>

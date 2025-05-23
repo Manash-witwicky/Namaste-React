@@ -11,7 +11,7 @@ const NotFound = () => {
   };
 
   return (
-    <div className="notfound-div">
+    <div className="flex items-center justify-center flex-col">
       <img src={NotFo} alt="404" style={style} />
       <span className="message">
         We can't seem to find the page you're looking for...

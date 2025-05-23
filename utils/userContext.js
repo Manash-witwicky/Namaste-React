@@ -1,4 +1,4 @@
-import { createContext, use } from "react";
+import { createContext } from "react";
 
 const userContext = createContext({
   loggedinUser: "Default User",

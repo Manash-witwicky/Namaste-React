@@ -26,3 +26,12 @@
 
 --- named import uses {}
 --- named default does not use
+
+#Redux-Toolkit
+
+- install @reduxjs/toolkit & react-redux
+- create a store
+- connect store to app
+- create slice (cart slice)
+- dispatch action
+- selector to read data

@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router";
 import useOnlineStatus from "../../utils/useOnlineStatus";
 import userContext from "../../utils/userContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setbtnName] = useState("Login");
@@ -12,6 +13,10 @@ const Header = () => {
   changeBtnName = () => {
     setbtnName((prevState) => (prevState === "Login" ? "Logout" : "Login"));
   };
+
+  // read the cart slice using selector
+
+  const cartItems = useSelector((store) => store.cart.items); // store point to appstore
 
   return (
     <div className="flex items-center justify-between shadow-xl">
@@ -30,7 +35,9 @@ const Header = () => {
           <li>
             <Link to="/contact">Contact</Link>
           </li>
-          <li>Cart</li>
+          <li className="font-bold text-xl">
+            Cart {cartItems.length ? `- ${cartItems.length} items` : ""}
+          </li>
           <button className="login-btn" onClick={changeBtnName}>
             {btnName}
           </button>

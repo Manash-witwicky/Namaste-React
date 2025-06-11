@@ -74,3 +74,17 @@ const RestaurantMenu = () => {
   );
 };
 export default RestaurantMenu;
+
+/**
+ * const [showIndex, setShowIndex] = useState(null);
+ * showIndex holds the index of the currently open accordion.
+ * If it's null, all accordions are closed.
+ * When mapping over categories, you pass two props to each MenuAccordion:
+ * showItems={index === showIndex ? true : false}
+ * This means only the accordion whose index matches showIndex will be open.
+ *
+ * setShowIndex={() => setShowIndex(index === showIndex ? null : index)}
+ * This function toggles the accordion:
+ * If you click an already open accordion (index === showIndex), it sets showIndex to null (closes it).
+ * If you click a closed accordion, it sets showIndex to that index (opens it).
+ */

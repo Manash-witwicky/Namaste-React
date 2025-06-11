@@ -7,13 +7,15 @@ import NotFound from "./src/components/NotFound";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 import userContext from "./utils/userContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 const AppLayout = () => {
   const [name, setName] = useState("");
 
   useEffect(() => {
     const loggedInUser = {
-      name: "Manash J. Das",
+      name: "Manash",
     };
     setName(loggedInUser?.name);
   }, []);
@@ -21,18 +23,18 @@ const AppLayout = () => {
   return (
     // <userContext.Provider value={{ loggedinUser: name }}>
     //   <div className="app">
-    //     <userContext.Provider value={{ loggedinUser: "Chintu" }}>
-    //       <Header />
-    //     </userContext.Provider>
+    //     <Header />
     //     <Outlet />
     //   </div>
     // </userContext.Provider>
-    <userContext.Provider value={{ loggedinUser: name, setName }}>
-      <div className="app">
-        <Header />
-        <Outlet />
-      </div>
-    </userContext.Provider>
+    <Provider store={appStore}>
+      <userContext.Provider value={{ loggedinUser: name, setName }}>
+        <div className="app">
+          <Header />
+          <Outlet />
+        </div>
+      </userContext.Provider>
+    </Provider>
   );
 };
 
@@ -60,7 +62,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: (
-          <Suspense>
+          <Suspense fallback={<div>Loading About Component....</div>}>
             <About />
           </Suspense>
         ),

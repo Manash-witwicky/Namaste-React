@@ -36,7 +36,9 @@ const Header = () => {
             <Link to="/contact">Contact</Link>
           </li>
           <li className="font-bold text-xl">
-            Cart {cartItems.length ? `- ${cartItems.length} items` : ""}
+            <Link to="/cart">
+              Cart {cartItems.length ? `- ${cartItems.length} items` : ""}
+            </Link>
           </li>
           <button className="login-btn" onClick={changeBtnName}>
             {btnName}

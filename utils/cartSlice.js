@@ -20,3 +20,5 @@ const cartSlice = createSlice({
 
 export const { addItem, removeItem, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
+
+// this is the syntax from RTK
